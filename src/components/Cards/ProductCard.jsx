@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 
 const ProductCard = ({ product }) => {
-  const imageUrl = product.image
+  const imageUrl = product.thumbnail // Use the "thumbnail" field for the image
   const title = product.title
   const price = product.price
   const category = product.category
+  const rating = product.rating
 
   const [hovered, setHovered] = useState(false)
   const [addedToCart, setAddedToCart] = useState(false)
@@ -35,8 +36,10 @@ const ProductCard = ({ product }) => {
       {/* Content */}
       <div className="px-4 py-2 bg-white">
         <div className="font-bold text-lg mb-2">{title}</div>
-        <p className="text-gray-700 text-base">${price}</p>
-        <p className="text-gray-700 text-base">{category}</p>
+        <p className="text-gray-700 text-base">Price: ${price}</p>
+        <p className="text-gray-700 text-base">Category: {category}</p>
+        <p className="text-gray-700 text-base">Rating: {rating}</p>{" "}
+        {/* Display the rating */}
       </div>
 
       {/* Add to Cart Button */}

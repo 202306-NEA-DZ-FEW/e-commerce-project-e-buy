@@ -7,9 +7,9 @@ export default function Home() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("https://fakestoreapi.com/products")
+        const response = await fetch("https://dummyjson.com/products") // Update the API endpoint
         const jsonData = await response.json()
-        setProducts(jsonData)
+        setProducts(jsonData.products) // Use jsonData.products to access the array of products
       } catch (error) {
         console.error("Error fetching data:", error)
       }
