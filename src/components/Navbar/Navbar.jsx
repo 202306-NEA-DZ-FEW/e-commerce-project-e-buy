@@ -2,11 +2,12 @@ import React from "react"
 import logo from "../../images/logo.svg"
 import Image from "next/image"
 import { BsSearchHeart } from "react-icons/bs"
+import Filter from "../Filter/Filter"
 
 const Navbar = () => {
   return (
     <nav className="flex items-center justify-between p-5 bg-white text-gray-800 shadow-md">
-      <div className="flex items-center max-w-7xl w-full">
+      <div className="flex items-center max-full w-full">
         <div className="flex-shrink-0 mr-8">
           <a href="#">
             <Image src={logo} width={78} height={78} alt="logo image" />
@@ -44,14 +45,7 @@ const Navbar = () => {
             </a>
           </li>
         </ul>
-        <div className="flex items-center relative">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="border border-gray-300 bg-gray-100 focus:ring-2 focus:ring-gray-200 px-3 py-2 rounded-md text-sm outline-none w-40 sm:w-48"
-          />
-          <BsSearchHeart className=" text-gray-400 absolute right-3 top-3" />
-        </div>
+        <Filter />
       </div>
     </nav>
   )
