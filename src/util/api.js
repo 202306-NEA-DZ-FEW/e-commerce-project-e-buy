@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 
-export default function Api() {
+export default function Api({ apiRoute }) {
   const [data, setData] = useState(null)
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("https://fakestoreapi.com/products")
+        const response = await fetch(
+          `https://api.escuelajs.co/api/v1/${apiRoute}`,
+        )
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.status}`)
+        }
         const jsonData = await response.json()
         setData(jsonData)
       } catch (error) {
@@ -15,19 +20,5 @@ export default function Api() {
     }
 
     fetchData()
-  }, [])
-
-  return (
-    <div>
-      {data ? (
-        <ul>
-          {data.map((product) => (
-            <li key={product.id}>{product.title}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  )
+  }, [apiRoute])
 }
