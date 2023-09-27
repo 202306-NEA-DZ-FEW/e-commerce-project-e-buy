@@ -1,5 +1,5 @@
-// index.js
 import React, { useEffect, useState } from "react"
+import ProductCard from "@/components/Cards/ProductCard"
 import PreviewCard from "@/components/Cards/PreviewCard"
 import SwiperCore, { Navigation } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -8,6 +8,22 @@ import "swiper/swiper-bundle.css"
 SwiperCore.use([Navigation])
 
 export default function Home() {
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("https://dummyjson.com/products") // Update the API endpoint
+        const jsonData = await response.json()
+        setProducts(jsonData.products) // Use jsonData.products to access the array of products
+      } catch (error) {
+        console.error("Error fetching data:", error)
+      }
+    }
+
+    fetchData()
+  }, [])
+
   const [categories, setCategories] = useState([])
   const [productsByCategory, setProductsByCategory] = useState({})
 
@@ -79,6 +95,11 @@ export default function Home() {
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   )
 }
