@@ -1,9 +1,9 @@
-import Api from "@/util/API"
+import Api from "@/util/api"
 
 export default function Home() {
   return (
     <main>
-      <Api />
+      <Api apiRoute={"products"} />
     </main>
   )
 }
