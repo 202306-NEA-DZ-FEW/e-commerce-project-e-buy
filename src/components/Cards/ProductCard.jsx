@@ -1,4 +1,6 @@
 import React, { useState } from "react"
+import { AiOutlineShoppingCart } from "react-icons/ai"
+import { AiFillStar } from "react-icons/ai"
 
 const ProductCard = ({ product }) => {
   const imageUrl = product.thumbnail // Use the "thumbnail" field for the image
@@ -36,10 +38,12 @@ const ProductCard = ({ product }) => {
       {/* Content */}
       <div className="px-4 py-2 bg-white">
         <div className="font-bold text-lg mb-2">{title}</div>
-        <p className="text-gray-700 text-base">Price: ${price}</p>
-        <p className="text-gray-700 text-base">Category: {category}</p>
-        <p className="text-gray-700 text-base">Rating: {rating}</p>{" "}
-        {/* Display the rating */}
+        <p className="text-gray-700 text-base">${price}</p>
+        <p className="text-gray-700 text-base">{category}</p>
+        <p className="text-gray-700 text-base">
+          {" "}
+          <AiFillStar /> {rating}{" "}
+        </p>{" "}
       </div>
 
       {/* Add to Cart Button */}
@@ -55,20 +59,7 @@ const ProductCard = ({ product }) => {
       {/* Cart Icon */}
       {addedToCart && (
         <div className="absolute bottom-2 right-2 text-purple-500">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M3 3h18a2 2 0 012 2v14a2 2 0 01-2 2H3a2 2 0 01-2-2V5a2 2 0 012-2zm0 0h18M2 9h20"
-            />
-          </svg>
+          <AiOutlineShoppingCart />
         </div>
       )}
     </div>
