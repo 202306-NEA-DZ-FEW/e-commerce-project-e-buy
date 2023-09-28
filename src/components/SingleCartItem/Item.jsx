@@ -42,8 +42,8 @@ const Item = ({
           <p className="mt-1 text-xs text-gray-700">Category : {category}</p>
           <p className="mt-1 text-xs text-gray-700">rating : {rating}</p>
         </div>
-        <div className="mt-4 flex justify-center im sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
-          <div className="flex items-center justify-end border-gray-100">
+        <div className="mt-4 flex justify-between im sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
+          <div className="flex items-center justify-end border-gray-100 ">
             <span
               className="flex items-center cursor-pointer rounded-r bg-gray-100 py-1 px-2 h-8"
               onClick={handleSubstract}
@@ -64,8 +64,8 @@ const Item = ({
               <AiOutlinePlus />{" "}
             </span>
           </div>
-          <div className="flex items-center mx-auto sm:justify-end">
-            <button className="py-2 px-[8px] rounded-md overflow-hidden bg-red-500 inline-flex items-center group relative text-white">
+          <div className="flex items-center  ">
+            <button className="py-2 px-[8px] rounded-md overflow-hidden bg-red-500 inline-flex items-center group relative text-white  ">
               <span>Remove</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

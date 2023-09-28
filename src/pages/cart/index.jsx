@@ -61,7 +61,7 @@ const index = () => {
     },
   ]
   return (
-    <div className="h-screen w-full container mx-auto">
+    <div className="h-screen w-full container mx-auto mb-10">
       <h1 className="my-7 text-center text-2xl ">Cart Items</h1>
       <div className="mx-auto max-w-full justify-center px-6 md:flex md:space-x-6 xl:px-0">
         <div className="rounded-lg md:w-2/3">
@@ -108,7 +108,7 @@ const index = () => {
               href="checkout"
               className="w-full flex justify-center group relative overflow-hidden mt-6 rounded-md  py-2 font-medium bg-purple-500 text-white "
             >
-              Proceed to Check Out
+              Proceed to Checkout
               <div className="absolute inset-0 h-full w-full scale-0 transition-all duration-300 group-hover:scale-100 group-hover:bg-white/20"></div>
             </Link>
           </div>
