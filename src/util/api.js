@@ -1,7 +1,10 @@
+// api.js
+
 import React, { useEffect, useState } from "react"
 import ProductCard from "@/components/Cards/ProductCard"
+import { userId } from "../firebaseConfig"
 
-const Api = ({ apiRoute, handleAddToCart }) => {
+const Api = ({ apiRoute }) => {
   const [data, setData] = useState(null)
 
   useEffect(() => {
@@ -32,7 +35,7 @@ const Api = ({ apiRoute, handleAddToCart }) => {
                 <ProductCard
                   key={product.id}
                   product={product}
-                  handleAddToCart={handleAddToCart}
+                  userId={userId} // Pass userId as a prop
                 />
               ))}
             </div>

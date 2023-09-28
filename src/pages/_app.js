@@ -4,14 +4,16 @@ import { store } from "../Redux/Store"
 import { Provider } from "react-redux"
 import Api from "../util/api"
 
-export default function App({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <div>
         <Navbar />
-        <Api />
+        {/* <Api apiRoute="products" /> */}
         <Component {...pageProps} />
       </div>
     </Provider>
   )
 }
+
+export default MyApp

@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore"
 import { getAuth } from "firebase/auth"
+import { v4 as uuidv4 } from "uuid"
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBSF6dTqceGg4d5z3HerOV-OHutzcQ_QrE",
@@ -12,7 +13,27 @@ export const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
-export const db = getFirestore(app)
-export const auth = getAuth(app)
+const db = getFirestore(app)
+const auth = getAuth(app)
 
-export default { app }
+const generateUserId = () => {
+  let userId
+
+  if (typeof window !== "undefined" && window.localStorage) {
+    userId = localStorage.getItem("uniqueUserId")
+  }
+
+  if (!userId) {
+    userId = uuidv4()
+
+    if (typeof window !== "undefined" && window.localStorage) {
+      localStorage.setItem("uniqueUserId", userId)
+    }
+  }
+
+  return userId
+}
+
+const userId = generateUserId()
+
+export { app, db, auth, userId }
