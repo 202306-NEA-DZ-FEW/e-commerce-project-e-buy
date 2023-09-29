@@ -74,13 +74,13 @@ function ProductDetail() {
   const renderStars = () => {
     const stars = []
     const rating = product.rating // Use the rating from the current product
-    const fullStars = Math.floor(rating / 2)
+    const fullStars = Math.floor(rating)
     const hasHalfStar = (rating / 2) % 1 !== 0
 
     for (let i = 0; i < fullStars; i++) {
       stars.push(
         <span key={i} className="text-yellow-400">
-          <BsStarFill />
+          <BsStarFill /> {console.log(product.rating)}
         </span>,
       )
     }
@@ -106,9 +106,9 @@ function ProductDetail() {
   }
 
   return (
-    <div className="max-w-screen-xl mx-auto p-4 flex">
+    <div className="max-w-screen-xl mx-auto p-4 flex flex-col md:flex-row">
       {/* Left side - Image Slider */}
-      <div className="w-1/2 pr-4">
+      <div className="w-full md:w-1/2 pr-4">
         <div className="relative">
           <button
             className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
@@ -148,7 +148,7 @@ function ProductDetail() {
       </div>
 
       {/* Right side - Product Information */}
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2 mt-4 md:mt-0">
         <div className="flex flex-col justify-center h-full">
           <h1 className="text-2xl font-bold mb-2">{product.title}</h1>
 
