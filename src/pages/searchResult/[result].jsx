@@ -1,114 +1,114 @@
 // SearchResult.js
-import React, { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/router";
-import FilterComponent from "@/components/Filter/FilterComponent";
-import ProductDisplay from "@/components/Filter/ProductDisplay";
+import React, { useState, useEffect, useRef } from "react"
+import { useRouter } from "next/router"
+import FilterComponent from "@/components/Filter/FilterComponent"
+import ProductDisplay from "@/components/Filter/ProductDisplay"
 
 const SearchResult = () => {
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-  const [sortByRating, setSortByRating] = useState(false);
-  const [sortByPriceAsc, setSortByPriceAsc] = useState(false);
-  const [sortByPriceDesc, setSortByPriceDesc] = useState(false);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const router = useRouter();
-  const currentURL = router.query.result;
+  const [products, setProducts] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([])
+  const [minPrice, setMinPrice] = useState("")
+  const [maxPrice, setMaxPrice] = useState("")
+  const [sortByRating, setSortByRating] = useState(false)
+  const [sortByPriceAsc, setSortByPriceAsc] = useState(false)
+  const [sortByPriceDesc, setSortByPriceDesc] = useState(false)
+  const [selectedCategories, setSelectedCategories] = useState([])
+  const router = useRouter()
+  const currentURL = router.query.result
 
-  const debounceTimeout = useRef(null);
+  const debounceTimeout = useRef(null)
 
   useEffect(() => {
     if (currentURL) {
       fetch(`https://dummyjson.com/products/search?q=${currentURL}`)
         .then((response) => response.json())
         .then((data) => {
-          setProducts(data.products);
-          setFilteredProducts(data.products);
+          setProducts(data.products)
+          setFilteredProducts(data.products)
         })
         .catch((error) => {
-          console.error("Error fetching data:", error);
-        });
+          console.error("Error fetching data:", error)
+        })
     }
-  }, [currentURL]);
+  }, [currentURL])
 
   const debounce = (func, delay) => {
     return function (...args) {
       if (debounceTimeout.current) {
-        clearTimeout(debounceTimeout.current);
+        clearTimeout(debounceTimeout.current)
       }
 
       debounceTimeout.current = setTimeout(() => {
-        func(...args);
-      }, delay);
-    };
-  };
+        func(...args)
+      }, delay)
+    }
+  }
 
   const handleMinPriceChange = (e) => {
-    const newMinPrice = e.target.value;
-    setMinPrice(newMinPrice);
-    debounce(filterProducts, 500)(newMinPrice, maxPrice);
-  };
+    const newMinPrice = e.target.value
+    setMinPrice(newMinPrice)
+    debounce(filterProducts, 500)(newMinPrice, maxPrice)
+  }
 
   const handleMaxPriceChange = (e) => {
-    const newMaxPrice = e.target.value;
-    setMaxPrice(newMaxPrice);
-    debounce(filterProducts, 500)(minPrice, newMaxPrice);
-  };
+    const newMaxPrice = e.target.value
+    setMaxPrice(newMaxPrice)
+    debounce(filterProducts, 500)(minPrice, newMaxPrice)
+  }
 
   const filterProducts = (min, max) => {
     const filtered = products.filter((product) => {
-      const price = parseFloat(product.price);
-      const minPriceValue = parseFloat(min);
-      const maxPriceValue = parseFloat(max);
+      const price = parseFloat(product.price)
+      const minPriceValue = parseFloat(min)
+      const maxPriceValue = parseFloat(max)
       return (
         isNaN(price) ||
         ((isNaN(minPriceValue) || price >= minPriceValue) &&
           (isNaN(maxPriceValue) || price <= maxPriceValue))
-      );
-    });
+      )
+    })
 
-    setFilteredProducts(filtered);
-  };
+    setFilteredProducts(filtered)
+  }
 
   const handleSortByRatingChange = () => {
-    setSortByRating(!sortByRating);
-    setSortByPriceAsc(false);
-    setSortByPriceDesc(false);
-  };
+    setSortByRating(!sortByRating)
+    setSortByPriceAsc(false)
+    setSortByPriceDesc(false)
+  }
 
   const handleSortByPriceAscChange = () => {
-    setSortByPriceAsc(!sortByPriceAsc);
-    setSortByRating(false);
-    setSortByPriceDesc(false);
-  };
+    setSortByPriceAsc(!sortByPriceAsc)
+    setSortByRating(false)
+    setSortByPriceDesc(false)
+  }
 
   const handleSortByPriceDescChange = () => {
-    setSortByPriceDesc(!sortByPriceDesc);
-    setSortByRating(false);
-    setSortByPriceAsc(false);
-  };
+    setSortByPriceDesc(!sortByPriceDesc)
+    setSortByRating(false)
+    setSortByPriceAsc(false)
+  }
 
   const handleCategoryChange = (category) => {
     if (selectedCategories.includes(category)) {
-      setSelectedCategories(selectedCategories.filter((c) => c !== category));
+      setSelectedCategories(selectedCategories.filter((c) => c !== category))
     } else {
-      setSelectedCategories([...selectedCategories, category]);
+      setSelectedCategories([...selectedCategories, category])
     }
-  };
-
-  if (!currentURL) {
-    return <p>Loading...</p>;
   }
 
-  let sortedProducts = [...filteredProducts];
+  if (!currentURL) {
+    return <p>Loading...</p>
+  }
+
+  let sortedProducts = [...filteredProducts]
 
   if (sortByRating) {
-    sortedProducts.sort((a, b) => b.rating - a.rating);
+    sortedProducts.sort((a, b) => b.rating - a.rating)
   } else if (sortByPriceAsc) {
-    sortedProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+    sortedProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
   } else if (sortByPriceDesc) {
-    sortedProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+    sortedProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price))
   }
 
   const filterCategories = [
@@ -132,12 +132,12 @@ const SearchResult = () => {
     "automotive",
     "motorcycle",
     "lighting",
-  ];
+  ]
 
   if (selectedCategories.length > 0) {
     sortedProducts = sortedProducts.filter((product) =>
-      selectedCategories.includes(product.category)
-    );
+      selectedCategories.includes(product.category),
+    )
   }
 
   return (
@@ -159,7 +159,7 @@ const SearchResult = () => {
       />
       <ProductDisplay currentURL={currentURL} sortedProducts={sortedProducts} />
     </div>
-  );
-};
+  )
+}
 
-export default SearchResult;
+export default SearchResult
