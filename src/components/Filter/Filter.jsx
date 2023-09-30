@@ -20,11 +20,11 @@ export default function Filter() {
   }
 
   return (
-    <div className="flex items-center relative ml-4">
+    <div className="flex items-center relative ml-4 max-w-screen-sm">
       <input
         type="text"
         placeholder="Search..."
-        className="border border-gray-300 bg-gray-100 focus:ring-2 focus:ring-gray-200 px-3 py-2 rounded-md text-sm outline-none min-w-0 flex-grow"
+        className="border border-gray-300 bg-gray-100 focus:ring-2 focus:ring-gray-200 px-3 py-2 rounded-md text-sm outline-none w-full md:w-56 lg:w-64"
         value={searchTerm}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}

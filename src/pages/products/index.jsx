@@ -1,34 +1,10 @@
+import React from "react"
 import Api from "../../util/api"
 import ProductCard from "../../components/Cards/ProductCard"
-import Link from "next/link"
 import { useRouter } from "next/router"
 import FilterComponent from "@/components/Filter/FilterComponent"
 
 const ProductsPage = () => {
-  return (
-    <div>
-      <Api apiRoute="products">
-        {(data) => (
-          <div className="container mx-auto py-8">
-            <h1 className="text-3xl font-normal mb-4 pb-2 text-EBuyGray font-causten">
-              All Products
-            </h1>
-            {/* <div className="w-11/12 border-b-2 border-EBuyBlue mb-6"></div> */}
-            <div className="flex flex-wrap -m-4">
-              {data?.products ? (
-                <ProductsList products={data.products} />
-              ) : (
-                <div>No products available.</div>
-              )}
-            </div>
-          </div>
-        )}
-      </Api>
-    </div>
-  )
-}
-
-const ProductsList = ({ products }) => {
   const router = useRouter()
 
   const handleProductClick = (productId) => {
@@ -36,15 +12,37 @@ const ProductsList = ({ products }) => {
   }
 
   return (
-    <ul className="list-none flex flex-wrap">
-      {products.map((product) => (
-        <li key={product.id} className="w-full md:w-1/2 lg:w-1/3 p-4">
-          <a onClick={() => handleProductClick(product.id)}>
-            <ProductCard product={product} />
-          </a>
-        </li>
-      ))}
-    </ul>
+    <div className="container mx-auto p-6 flex">
+      <div className="w-1/4 pr-4">
+        {/* <FilterComponent/> */}
+        {/* Apply padding to the FilterComponent */}
+      </div>
+      <div>
+        <Api apiRoute="products">
+          {(data) => (
+            <>
+              <h1 className="text-3xl mb-8 font-normal text-EBuyGray">
+                All Products
+              </h1>
+              <div className="flex flex-wrap justify-center gap-6">
+                {data?.products ? (
+                  data.products.map((product) => (
+                    <a
+                      key={product.id}
+                      onClick={() => handleProductClick(product.id)}
+                    >
+                      <ProductCard product={product} />
+                    </a>
+                  ))
+                ) : (
+                  <p>No products available.</p>
+                )}
+              </div>
+            </>
+          )}
+        </Api>
+      </div>
+    </div>
   )
 }
 

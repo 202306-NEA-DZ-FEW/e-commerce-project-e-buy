@@ -29,17 +29,24 @@ const ProductCard = ({ product }) => {
       }`}
       onMouseEnter={handleHover}
       onMouseLeave={handleMouseLeave}
+      style={{ height: "400px" }} // Set a fixed height for the card
     >
       {/* Image */}
-      <img src={imageUrl} alt={title} className="w-full h-64 object-cover" />
+      <div
+        style={{
+          height: "200px", // Set a fixed height for the image
+          overflow: "hidden",
+        }}
+      >
+        <img src={imageUrl} alt={title} className="w-full object-cover" />
+      </div>
 
       {/* Content */}
       <div className="px-4 py-2 bg-white">
         <div className="font-bold text-lg mb-2">{title}</div>
         <p className="text-gray-700 text-base">Price: ${price}</p>
         <p className="text-gray-700 text-base">Category: {category}</p>
-        <p className="text-gray-700 text-base">Rating: {rating}</p>{" "}
-        {/* Display the rating */}
+        <p className="text-gray-700 text-base">Rating: {rating}</p>
       </div>
 
       {/* Add to Cart Button */}

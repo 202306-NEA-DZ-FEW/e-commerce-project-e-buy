@@ -36,7 +36,7 @@ const Footer = () => {
         <div className="text-center md:text-left mb-4 md:mb-0">
           <h1 className="text-3xl font-bold">E-Buy</h1>
         </div>
-        <div className="flex flex-wrap justify-center md:justify-end">
+        <div className="flex flex-wrap justify-center">
           {teamMembers.map((member, index) => (
             <div
               key={index}
