@@ -70,7 +70,6 @@ const Index = () => {
             href="/products"
             className="mt-5 flex-1 px-6 py-2 font-semibold select-none rounded-md text-gray-800 bg-gray-200 hover:bg-gray-300"
           >
-            {" "}
             go to products
           </Link>
         </div>
