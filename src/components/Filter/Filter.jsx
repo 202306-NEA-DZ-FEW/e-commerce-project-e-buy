@@ -1,33 +1,58 @@
-import { useRouter } from "next/router"
 import React, { useState } from "react"
+import { useRouter } from "next/router"
 import { BsSearchHeart } from "react-icons/bs"
+import Api from "../../util/api"
 
 export default function Filter() {
-  const [data, setData] = useState(null)
+  const [searchTerm, setSearchTerm] = useState("")
+  const [showResults, setShowResults] = useState(false)
   const router = useRouter()
 
-  async function fetchData(event) {
-    const response = await fetch(
-      `https://dummyjson.com/products/search?q=${event.target.value}`,
-    )
-    const jsonData = await response.json()
-    setData(jsonData)
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13 && searchTerm.length > 0) {
+      router.push(`/searchResult/${searchTerm}`)
+    }
+  }
+
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value)
+    setShowResults(e.target.value !== "")
   }
 
   return (
-    <div className="flex items-center relative">
+    <div className="flex items-center relative ml-4">
       <input
         type="text"
         placeholder="Search..."
-        className="border border-gray-300 bg-gray-100 focus:ring-2 focus:ring-gray-200 px-3 py-2 rounded-md text-sm outline-none w-40 sm:w-48"
-        onKeyDown={(e) => {
-          if (e.keyCode == 13 && e.target.value.length > 0) {
-            fetchData(e)
-            router.push(`/searchResult/${e.target.value}`)
-          }
-        }}
+        className="border border-gray-300 bg-gray-100 focus:ring-2 focus:ring-gray-200 px-3 py-2 rounded-md text-sm outline-none min-w-0 flex-grow"
+        value={searchTerm}
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
+        onFocus={() => setShowResults(true)}
       />
-      <BsSearchHeart className=" text-gray-400 absolute right-3 top-3" />
+      <BsSearchHeart className="text-gray-400 absolute right-3 top-3" />
+
+      {showResults && searchTerm && (
+        <Api apiRoute={`products/search?q=${searchTerm}`}>
+          {(data) => {
+            if (data) {
+              return (
+                <div className="mt-2">
+                  <h2 className="text-sm font-semibold"></h2>
+                  <ul>
+                    {data.products.map((product) => (
+                      <li key={product.id} className="text-sm">
+                        {/* {product.title} */}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
+            return <div className="mt-2 text-sm">No search results found.</div>
+          }}
+        </Api>
+      )}
     </div>
   )
 }

@@ -36,11 +36,21 @@ const FilterComponent = ({
   }
 
   const getArrowIcon = (section) => {
-    return section === "price" ? (
+    return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className={`h-5 w-5 inline-block transition-transform duration-300 transform rotate-${
-          priceSectionOpen ? "180" : "0"
+          section === "price"
+            ? priceSectionOpen
+              ? "180"
+              : "0"
+            : section === "rating"
+            ? ratingSectionOpen
+              ? "180"
+              : "0"
+            : categorySectionOpen
+            ? "180"
+            : "0"
         }`}
         fill="none"
         viewBox="0 0 24 24"
@@ -53,45 +63,11 @@ const FilterComponent = ({
           d="M19 9l-7 7-7-7"
         />
       </svg>
-    ) : section === "rating" ? (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={`h-5 w-5 inline-block transition-transform duration-300 transform rotate-${
-          ratingSectionOpen ? "180" : "0"
-        }`}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M19 9l-7 7-7-7"
-        />
-      </svg>
-    ) : section === "category" ? (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={`h-5 w-5 inline-block transition-transform duration-300 transform rotate-${
-          categorySectionOpen ? "180" : "0"
-        }`}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M19 9l-7 7-7-7"
-        />
-      </svg>
-    ) : null
+    )
   }
 
   return (
-    <div className="w-1/6 h-fit outline outline-1 outline-gray-300 mt-1 text-gray-600">
+    <div className="w-full md:w-1/6 h-auto outline outline-1 outline-gray-300 mt-1 text-gray-600">
       <div>
         <div className="flex justify-center items-center space-x-3">
           <span className="text-2xl">Filter</span>
