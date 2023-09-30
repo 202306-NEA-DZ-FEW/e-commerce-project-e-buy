@@ -1,3 +1,4 @@
+// ProductList.js
 import Link from "next/link"
 
 function ProductsList({ products }) {

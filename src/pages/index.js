@@ -4,6 +4,8 @@ import PreviewCard from "@/components/Cards/PreviewCard"
 import SwiperCore, { Navigation } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/swiper-bundle.css"
+import Banner from "@/components/Banner/BannerC"
+import CategoriesCarousel from "@/components/Cards/CategoriesCarousel"
 
 SwiperCore.use([Navigation])
 
@@ -84,6 +86,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-4">
+      <Banner />
       <Swiper slidesPerView={1} navigation={swiperParams.navigation}>
         {categories.map((category, index) => (
           <SwiperSlide key={index}>
@@ -95,6 +98,8 @@ export default function Home() {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <CategoriesCarousel categories={categories} />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
