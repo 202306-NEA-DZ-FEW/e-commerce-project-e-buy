@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs" // Import star icons
+import { fetchProductById } from "@/util/API" // Import the fetchProductById function from your API file
 
 function ProductDetail() {
   const router = useRouter()
@@ -13,12 +14,8 @@ function ProductDetail() {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const response = await fetch(`https://dummyjson.com/products/${id}`)
-        if (!response.ok) {
-          throw new Error(`Network response was not ok: ${response.status}`)
-        }
-        const jsonData = await response.json()
-        setProduct(jsonData)
+        const productData = await fetchProductById(`products/${id}`) // Use the fetchProductById function from your API
+        setProduct(productData)
       } catch (error) {
         console.error(error)
       }
@@ -80,7 +77,7 @@ function ProductDetail() {
     for (let i = 0; i < fullStars; i++) {
       stars.push(
         <span key={i} className="text-yellow-400">
-          <BsStarFill /> {console.log(product.rating)}
+          <BsStarFill />
         </span>,
       )
     }
