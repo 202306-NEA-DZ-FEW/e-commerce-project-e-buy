@@ -4,14 +4,15 @@ import { useSelector } from "react-redux"
 
 const CartIcon = () => {
   const { cartItems } = useSelector((state) => state.cart)
-  const numberOfItems = cartItems.map((item) => item.qty)
+  const quantities = cartItems?.map((item) => (item.qty ? item.qty : 1))
+  const totalQuantities = quantities?.reduce((acc, curr) => acc + curr, 0)
   return (
     <Link href="/cart">
-      <div className="mx-5 flex justify-center items-center">
+      <div className="mt-[-1rem] mx-1 lg:mx-4 flex justify-center items-center">
         <div className="relative py-2">
           <div className="t-0 absolute left-3">
             <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
-              {console.log(numberOfItems)}
+              {parseInt(totalQuantities)}
             </p>
           </div>
           <svg

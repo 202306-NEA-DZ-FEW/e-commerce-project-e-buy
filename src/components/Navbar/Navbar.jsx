@@ -87,8 +87,8 @@ const Navbar = () => {
         }`}
       >
         <Filter />
-        <CartIcon />
       </div>
+      <CartIcon />
     </nav>
   )
 }

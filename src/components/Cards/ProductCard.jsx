@@ -1,6 +1,9 @@
+import { addToCart } from "@/redux/slices/CartSlice"
 import React, { useState } from "react"
+import { useDispatch } from "react-redux"
 
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch()
   const imageUrl = product.thumbnail // Use the "thumbnail" field for the image
   const title = product.title
   const price = product.price
@@ -20,6 +23,7 @@ const ProductCard = ({ product }) => {
 
   const handleAddToCart = () => {
     setAddedToCart(true)
+    dispatch(addToCart({ ...product }))
   }
 
   return (
