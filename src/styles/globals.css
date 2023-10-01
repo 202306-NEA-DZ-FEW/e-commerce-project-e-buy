@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Causten&display=swap");
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -14,6 +15,19 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+}
+
+.custom-card-height {
+  height: 400px; /* Adjust as needed */
+}
+
+.custom-card-image {
+  width: 100%;
+  height: auto;
+}
+
+.label-title {
+  text-transform: capitalize;
 }
 
 /* @layer base {

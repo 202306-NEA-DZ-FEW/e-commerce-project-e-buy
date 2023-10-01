@@ -1,42 +1,191 @@
-// [id].js
-import React, { useState, useEffect } from "react"
-import { useRouter } from "next/router"
+import React, { useState, useRef } from "react"
+import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs"
+import Api from "../../util/api"
 
-function ProductDetail() {
-  const router = useRouter()
-  const { id } = router.query
-  const [product, setProduct] = useState(null)
+const ProductPage = ({ id }) => {
+  const [quantity, setQuantity] = useState(1)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
-  useEffect(() => {
-    async function fetchProduct() {
-      try {
-        const response = await fetch(`https://dummyjson.com/products/${id}`)
-        if (!response.ok) {
-          throw new Error(`Network response was not ok: ${response.status}`)
-        }
-        const jsonData = await response.json()
-        setProduct(jsonData)
-      } catch (error) {
-        console.error(error)
-      }
+  const imageSliderRef = useRef(null)
+
+  const handleQuantityChange = (e) => {
+    const newQuantity = parseInt(e.target.value, 10)
+    setQuantity(newQuantity)
+  }
+
+  const nextImage = () => {
+    if (!isTransitioning) {
+      setIsTransitioning(true)
+      setTimeout(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % id.images)
+        setIsTransitioning(false)
+      }, 300) // Adjust the duration to match your CSS transition duration
     }
+  }
 
-    if (id) {
-      fetchProduct()
+  const prevImage = () => {
+    if (!isTransitioning) {
+      setIsTransitioning(true)
+      setTimeout(() => {
+        setCurrentImageIndex((prevIndex) =>
+          prevIndex === 0 ? id.images.length - 1 : prevIndex - 1,
+        )
+        setIsTransitioning(false)
+      }, 300) // Adjust the duration to match your CSS transition duration
     }
-  }, [id])
+  }
 
-  if (!product) {
-    return <div className="text-center mt-4">Loading...</div>
+  const addToCart = () => {
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || []
+
+    const newItem = {
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      quantity,
+    }
+    existingCart.push(newItem)
+
+    localStorage.setItem("cart", JSON.stringify(existingCart))
+
+    setQuantity(1)
+
+    alert(`Added ${quantity} ${product.title}(s) to Cart`)
   }
 
   return (
-    <div className="max-w-screen-lg mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">{product.name}</h1>
-      <p className="text-gray-800">{product.description}</p>
-      <img src={product.thumbnail} />
-    </div>
+    <Api apiRoute={`products/${id}`}>
+      {(product) => {
+        const { title, description, images, price, rating } = product
+
+        const renderStars = () => {
+          const stars = []
+          const fullStars = Math.floor(rating)
+          const hasHalfStar = (rating / 2) % 1 !== 0
+
+          for (let i = 0; i < fullStars; i++) {
+            stars.push(
+              <span key={i} className="text-yellow-400">
+                <BsStarFill />
+              </span>,
+            )
+          }
+
+          if (hasHalfStar && stars.length < 5) {
+            stars.push(
+              <span key={fullStars} className="text-yellow-400">
+                <BsStarHalf />
+              </span>,
+            )
+          }
+
+          while (stars.length < 5) {
+            stars.push(
+              <span key={stars.length} className="text-gray-400">
+                <BsStar />
+              </span>,
+            )
+          }
+
+          return stars
+        }
+
+        return (
+          <div className="max-w-screen-xl mx-auto p-4 flex flex-col md:flex-row">
+            <div className="w-full md:w-1/2 pr-4 relative">
+              <button
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+                onClick={prevImage}
+              >
+                &lt;
+              </button>
+              <img
+                src={product.images[currentImageIndex]}
+                alt={`Product Image ${currentImageIndex}`}
+                className={`w-full h-96 object-cover rounded-lg ${
+                  isTransitioning ? "opacity-0" : "opacity-100"
+                } transition-opacity`}
+              />
+              <button
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+                onClick={nextImage}
+              >
+                &gt;
+              </button>
+
+              <div className="flex mt-4">
+                {product.images.map((image, index) => (
+                  <div
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-1/5 cursor-pointer p-1 border ${
+                      index === currentImageIndex
+                        ? "border-gray-800"
+                        : "border-gray-200"
+                    } transition duration-300 ease-in-out transform hover:scale-110`}
+                  >
+                    <img
+                      src={image}
+                      alt={`Product Image ${index}`}
+                      className="w-full h-20 object-cover rounded-lg"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="w-full md:w-1/2 mt-4 md:mt-0">
+              <div className="flex flex-col justify-center h-full">
+                <h1 className="text-2xl font-bold mb-2">{title}</h1>
+
+                <div className="flex items-center mb-2">{renderStars()}</div>
+
+                <p className="text-gray-800 mb-4">{description}</p>
+
+                <div className="mb-4 flex items-center">
+                  <label htmlFor="quantity" className="block font-bold mr-2">
+                    Quantity:
+                  </label>
+                  <input
+                    type="number"
+                    id="quantity"
+                    name="quantity"
+                    value={quantity}
+                    min="1"
+                    onChange={handleQuantityChange}
+                    className="border border-gray-300 rounded px-3 py-2 w-20"
+                  />
+                </div>
+
+                <div className="flex items-center">
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+                    onClick={addToCart}
+                  >
+                    Add to Cart
+                  </button>
+                  <div className="bg-gray-200 border rounded p-3">
+                    <p className="text-lg font-bold">${price}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }}
+    </Api>
   )
 }
 
-export default ProductDetail
+export async function getServerSideProps(context) {
+  const { id } = context.params
+
+  return {
+    props: {
+      id,
+    },
+  }
+}
+
+export default ProductPage
