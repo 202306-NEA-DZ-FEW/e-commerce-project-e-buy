@@ -26,7 +26,7 @@ const TotalPrice = () => {
           <p className="text-gray-700 text-base font-medium">Tax</p>
           <p className="text-gray-700">{taxPrice} $</p>
         </div>
-        {console.log(useSelector((state) => state.cart))}
+
         <div className="flex justify-between">
           <p className="text-gray-700 text-base font-medium">Shipping</p>
           <p className="text-gray-400">

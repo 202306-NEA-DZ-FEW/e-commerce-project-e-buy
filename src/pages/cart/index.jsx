@@ -62,6 +62,7 @@ const Index = () => {
             height={300}
             width={300}
             className="mx-auto mb-7"
+            alt="empty cart image"
           />
           <h3 className="text-base font-light mb-5">
             No items in cart 🛒 please add items

@@ -3,6 +3,13 @@ import logo from "../../images/logo.svg"
 import Image from "next/image"
 import { BsSearchHeart } from "react-icons/bs"
 import Filter from "../Filter/Filter"
+import dynamic from "next/dynamic"
+//import CartIcon from "../ShoppingIcon/CartIcon"
+
+// using dynamic import to disable ssr
+const CartIcon = dynamic(() => import("@/components/ShoppingIcon/CartIcon"), {
+  ssr: false,
+})
 
 const Navbar = () => {
   return (
@@ -46,6 +53,7 @@ const Navbar = () => {
           </li>
         </ul>
         <Filter />
+        <CartIcon />
       </div>
     </nav>
   )
