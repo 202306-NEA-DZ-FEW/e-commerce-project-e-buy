@@ -39,24 +39,6 @@ const ProductPage = ({ id }) => {
     }
   }
 
-  /*   const addToCart = () => {
-      const existingCart = JSON.parse(localStorage.getItem("cart")) || []
-  
-      const newItem = {
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        quantity,
-      }
-      existingCart.push(newItem)
-  
-      localStorage.setItem("cart", JSON.stringify(existingCart))
-  
-      setQuantity(1)
-  
-      alert(`Added ${quantity} ${product.title}(s) to Cart`)
-    } */
-
   return (
     <Api apiRoute={`products/${id}`}>
       {(product) => {
