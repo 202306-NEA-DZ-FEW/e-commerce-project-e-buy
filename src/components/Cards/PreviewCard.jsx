@@ -1,32 +1,28 @@
 import React from "react"
+import { Carousel } from "react-responsive-carousel"
+import "react-responsive-carousel/lib/styles/carousel.min.css"
 
-const PreviewCard = ({ categoryName, product, handleCategoryClick }) => {
+const PreviewCard = ({ images }) => {
   return (
-    <div className="relative w-full">
-      <div className="relative rounded-lg overflow-hidden">
-        {product ? (
-          <img
-            src={product.thumbnail}
-            alt={product.title}
-            className="w-full h-80 object-cover"
-          />
-        ) : (
-          <div className="w-full h-80 flex items-center justify-center bg-gray-200">
-            <p>No products available for this category.</p>
+    <div className="relative max-w-full max-h-300px mx-auto">
+      <Carousel
+        showArrows={true}
+        infiniteLoop={true}
+        showThumbs={false}
+        showStatus={false}
+        autoPlay={true}
+        interval={5000}
+        className="max-h-300px"
+      >
+        {images.map((image, index) => (
+          <div key={index}>
+            <img src={image.src} alt={image.alt} className="w-full h-auto" />
           </div>
-        )}
-        <div className="absolute top-0 left-0 p-2 bg-blue-500 text-white rounded-b">
-          {categoryName}
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-white bg-opacity-80">
-          <button
-            className="text-white bg-blue-500 hover:bg-blue-800 transition duration-300 px-4 py-2 rounded-full"
-            onClick={() => handleCategoryClick(categoryName)}
-          >
-            See more products
-          </button>
-        </div>
-      </div>
+        ))}
+      </Carousel>
+      <button className="absolute bottom-60 left-1/3 transform -translate-x-1/2 bg-blue-500 text-white px-10 py-3 rounded">
+        More
+      </button>
     </div>
   )
 }

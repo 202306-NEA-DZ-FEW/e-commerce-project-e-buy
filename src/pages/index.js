@@ -6,7 +6,13 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/swiper-bundle.css"
 import Banner from "@/components/Banner/BannerC"
 import CategoriesCarousel from "@/components/Cards/CategoriesCarousel"
-
+const images = [
+  { src: "bannerC.jpg", alt: "banner" },
+  { src: "furniture.png", alt: "furniture" },
+  { src: "homedeco.png", alt: "homedeco" },
+  { src: "dress.png", alt: "dresses" },
+  //  { src: "../../public/" , alt: ""}
+]
 SwiperCore.use([Navigation])
 
 export default function Home() {
@@ -80,31 +86,26 @@ export default function Home() {
   }
 
   const handleCategoryClick = (categoryName) => {
-    // Handle navigation to the category page here
+    // Handle navigation to the category page
     console.log(`Navigating to category: ${categoryName}`)
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <Banner />
-      <Swiper slidesPerView={1} navigation={swiperParams.navigation}>
-        {categories.map((category, index) => (
-          <SwiperSlide key={index}>
-            <PreviewCard
-              categoryName={category}
-              product={productsByCategory[category] || null}
-              handleCategoryClick={handleCategoryClick}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <>
+      <div className="container mx-auto p-4">
+        <PreviewCard images={images} />
 
-      <CategoriesCarousel categories={categories} />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {/* <CategoriesCarousel categories={categories} /> */}
+        <h1 className="text-4xl font-bold border-l-4 border-purple-500 pl-4 mb-4">
+          New Arrival
+        </h1>
+        <br></br>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
