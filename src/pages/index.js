@@ -6,7 +6,15 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/swiper-bundle.css"
 import Banner from "@/components/Banner/BannerC"
 import CategoriesCarousel from "@/components/Cards/CategoriesCarousel"
+import ProductDisplay from "@/components/Filter/ProductDisplay"
 
+const images = [
+  { src: "bannerC.jpg", alt: "banner" },
+  { src: "furniture.png", alt: "furniture" },
+  { src: "homedeco.png", alt: "homedeco" },
+  { src: "dress.png", alt: "dresses" },
+  //  { src: "../../public/" , alt: ""}
+]
 SwiperCore.use([Navigation])
 
 export default function Home() {
@@ -26,52 +34,6 @@ export default function Home() {
     fetchData()
   }, [])
 
-  const [categories, setCategories] = useState([])
-  const [productsByCategory, setProductsByCategory] = useState({})
-
-  useEffect(() => {
-    async function fetchCategories() {
-      try {
-        const response = await fetch(
-          "https://dummyjson.com/products/categories",
-        )
-        const jsonData = await response.json()
-        setCategories(jsonData)
-      } catch (error) {
-        console.error("Error fetching categories:", error)
-      }
-    }
-
-    fetchCategories()
-  }, [])
-
-  useEffect(() => {
-    async function fetchProductsForCategories() {
-      const productsByCategory = {}
-
-      for (const category of categories) {
-        try {
-          const response = await fetch(
-            `https://dummyjson.com/products/category/${category}`,
-          )
-          const jsonData = await response.json()
-          productsByCategory[category] = jsonData.products
-        } catch (error) {
-          console.error(
-            `Error fetching products for category ${category}:`,
-            error,
-          )
-        }
-      }
-
-      setProductsByCategory(productsByCategory)
-    }
-
-    if (categories.length > 0) {
-      fetchProductsForCategories()
-    }
-  }, [categories])
-
   const swiperParams = {
     navigation: {
       nextEl: ".swiper-button-next",
@@ -80,31 +42,23 @@ export default function Home() {
   }
 
   const handleCategoryClick = (categoryName) => {
-    // Handle navigation to the category page here
+    // Handle navigation to the category page
     console.log(`Navigating to category: ${categoryName}`)
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <Banner />
-      <Swiper slidesPerView={1} navigation={swiperParams.navigation}>
-        {categories.map((category, index) => (
-          <SwiperSlide key={index}>
-            <PreviewCard
-              categoryName={category}
-              product={productsByCategory[category] || null}
-              handleCategoryClick={handleCategoryClick}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <>
+      <div className="container mx-auto p-2">
+        <PreviewCard images={images} />
 
-      <CategoriesCarousel categories={categories} />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {/* <CategoriesCarousel categories={categories} /> */}
+        <h1 className="text-4xl font-bold mb-4 text-EBuyOrange">New Arrival</h1>
+        <br></br>
+        <ProductDisplay
+          currentURL="all"
+          sortedProducts={products.slice(0, 6)}
+        />
       </div>
-    </div>
+    </>
   )
 }

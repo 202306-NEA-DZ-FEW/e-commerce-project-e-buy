@@ -22,6 +22,7 @@ module.exports = {
         EBuyDeepOrange: "#FFA461 ",
         EBuyLightBlue: "#61BFFF",
         EBuyGray: "#3F4646",
+        EBuyDarkGray: "#2B3131",
       },
       fontFamily: {
         causten: ["Causten", "sans-serif"],

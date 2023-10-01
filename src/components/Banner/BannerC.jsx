@@ -12,7 +12,7 @@ const Banner = () => {
       />
 
       <div className="absolute inset-0 flex flex-col justify-end items-start text-gray-50 p-4">
-        <button className=" text-center text-5xl font-bold text-lg inline-block sm:block px-4 py-2 bg-gray-600 rounded ">
+        <button className=" text-center text-5xl font-bold inline-block sm:block px-4 py-2 bg-gray-600 rounded ">
           Our products
         </button>
       </div>

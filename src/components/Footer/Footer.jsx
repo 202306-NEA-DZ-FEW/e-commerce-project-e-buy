@@ -31,38 +31,36 @@ const teamMembers = [
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 text-white py-8">
+    <footer className="bg-gray-700 text-white py-8 flex flex-wrap justify-center items-center">
       <div className="container mx-auto px-4 flex flex-col items-center md:flex-row justify-center">
-        <div className="flex flex-wrap justify-center">
-          {teamMembers.map((member, index) => (
-            <div
-              key={index}
-              className="bg-gray-800 rounded-lg p-4 m-2 hover:shadow-md hover:scale-105 transition duration-300"
-            >
-              <h4 className="font-semibold mb-2 truncate">{member.name}</h4>
-              <div className="flex items-center justify-center space-x-2 mt-2">
-                <a
-                  href={member.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-blue-500 text-xl transition duration-300"
-                >
-                  <AiFillGithub />
-                </a>
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-blue-500 text-xl transition duration-300"
-                >
-                  <AiFillLinkedin />
-                </a>
-              </div>
+        {teamMembers.map((member, index) => (
+          <div
+            key={index}
+            className="bg-gray-800 rounded-lg p-4 m-2 w-48 hover:shadow-md hover:scale-105 transition duration-300 text-center"
+          >
+            <h4 className="font-semibold mb-2 truncate">{member.name}</h4>
+            <div className="flex items-center justify-center space-x-2 mt-2">
+              <a
+                href={member.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-orange-500 text-xl transition duration-300"
+              >
+                <AiFillGithub />
+              </a>
+              <a
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-orange-500 text-xl transition duration-300"
+              >
+                <AiFillLinkedin />
+              </a>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-      <footer className="bg-OrangeWhite dark:bg-[#0b0b0b] py-2">
+      <footer className=" py-2">
         {/* Footer copyright content */}
         <p className="text-white text-center mt-2">
           &copy; {new Date().getFullYear()} E-Buy. All Rights Reserved.

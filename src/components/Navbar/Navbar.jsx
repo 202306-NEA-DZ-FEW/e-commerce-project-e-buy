@@ -3,14 +3,11 @@ import logo from "../../images/logo.svg"
 import Image from "next/image"
 import Filter from "../Filter/Filter"
 import Link from "next/link"
-
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
-
   return (
     <nav className="flex items-center p-4 bg-white text-gray-800 shadow-md relative">
       {/* Logo on the left */}
@@ -19,7 +16,6 @@ const Navbar = () => {
           <Image src={logo} width={78} height={78} alt="logo image" />
         </Link>
       </div>
-
       {/* Links in the center */}
       <div
         className={`${
@@ -31,7 +27,7 @@ const Navbar = () => {
         <Link href="/">
           <span className="cursor-pointer hover:text-gray-400">Home</span>
         </Link>
-        <Link href="/searchResult">
+        <Link href="/searchResult/all">
           <span className="cursor-pointer hover:text-gray-400">Shop</span>
         </Link>
         <Link href="/contact">
@@ -43,6 +39,8 @@ const Navbar = () => {
         <button onClick={handleToggleMenu}>
           {isMenuOpen ? (
             <svg
+              Expand
+              Down
               className="w-6 h-6"
               fill="none"
               stroke="currentColor"
@@ -72,7 +70,6 @@ const Navbar = () => {
           )}
         </button>
       </div>
-
       {/* Filter on the right */}
       <div
         className={`${
@@ -84,5 +81,4 @@ const Navbar = () => {
     </nav>
   )
 }
-
 export default Navbar

@@ -167,7 +167,18 @@ const SearchResult = () => {
         handleCategoryChange={handleCategoryChange}
         filterCategories={filterCategories}
       />
-      <ProductDisplay currentURL={currentURL} sortedProducts={sortedProducts} />
+      <div>
+        <h1 className="text-2xl mb-4 pt-4 font-semibold text-EBuyGray">
+          {" "}
+          {currentURL == "all"
+            ? "All Products"
+            : `Search Results for ${currentURL}`}
+        </h1>
+        <ProductDisplay
+          currentURL={currentURL}
+          sortedProducts={sortedProducts}
+        />
+      </div>
     </div>
   )
 }
