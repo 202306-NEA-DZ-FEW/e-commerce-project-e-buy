@@ -20,7 +20,7 @@ const TotalPrice = () => {
       <div className=" flex-grow">
         <div className="mb-2 flex justify-between">
           <p className="text-gray-700 text-xl font-medium">Subtotal</p>
-          <p className="text-gray-700">{itemsPrice}</p>
+          <p className="text-gray-700">{itemsPrice} $</p>
         </div>
         <div className="mb-2 flex justify-between">
           <p className="text-gray-700 text-base font-medium">Tax</p>

@@ -42,7 +42,7 @@ const cartSlice = createSlice({
         Number(state.shippingPrice) +
         Number(state.taxPrice)
 
-      Cookies.set("cart", JSON.stringify(state))
+      Cookies.set("cart", JSON.stringify(state), { sameSite: "strict" })
     },
     removeFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter((x) => x.id !== action.payload)
@@ -58,7 +58,7 @@ const cartSlice = createSlice({
         Number(state.taxPrice)
       ).toFixed(2)
       state.showSidebar = state.cartItems.length > 0
-      Cookies.set("cart", JSON.stringify(state))
+      Cookies.set("cart", JSON.stringify(state), { sameSite: "strict" })
     },
     hideLoading: (state) => {
       state.loading = false

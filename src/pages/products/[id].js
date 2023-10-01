@@ -1,8 +1,11 @@
 import React, { useState, useRef } from "react"
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs"
+import { useDispatch } from "react-redux"
 import Api from "../../util/api"
+import { addToCart } from "@/redux/slices/CartSlice"
 
 const ProductPage = ({ id }) => {
+  const dispatch = useDispatch()
   const [quantity, setQuantity] = useState(1)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
@@ -36,23 +39,23 @@ const ProductPage = ({ id }) => {
     }
   }
 
-  const addToCart = () => {
-    const existingCart = JSON.parse(localStorage.getItem("cart")) || []
-
-    const newItem = {
-      id: product.id,
-      title: product.title,
-      price: product.price,
-      quantity,
-    }
-    existingCart.push(newItem)
-
-    localStorage.setItem("cart", JSON.stringify(existingCart))
-
-    setQuantity(1)
-
-    alert(`Added ${quantity} ${product.title}(s) to Cart`)
-  }
+  /*   const addToCart = () => {
+      const existingCart = JSON.parse(localStorage.getItem("cart")) || []
+  
+      const newItem = {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        quantity,
+      }
+      existingCart.push(newItem)
+  
+      localStorage.setItem("cart", JSON.stringify(existingCart))
+  
+      setQuantity(1)
+  
+      alert(`Added ${quantity} ${product.title}(s) to Cart`)
+    } */
 
   return (
     <Api apiRoute={`products/${id}`}>
@@ -161,7 +164,10 @@ const ProductPage = ({ id }) => {
                 <div className="flex items-center">
                   <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-                    onClick={addToCart}
+                    // I had to use console.log to get it work
+                    onClick={() =>
+                      dispatch(addToCart({ ...product, qty: quantity }))
+                    }
                   >
                     Add to Cart
                   </button>

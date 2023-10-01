@@ -47,6 +47,7 @@ const Index = () => {
                 category={item.category}
                 stock={item.stock}
                 thumbnail={item.images[0]}
+                itemQty={item.qty ? item.qty : 1}
                 addToCartHandler={(qty) => addToCartHandler(item, qty)}
                 removeFromCartHandler={() => removeFromCartHandler(item.id)}
               />

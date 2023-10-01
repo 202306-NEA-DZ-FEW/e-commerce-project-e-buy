@@ -13,8 +13,9 @@ const Item = ({
   thumbnail,
   addToCartHandler,
   removeFromCartHandler,
+  itemQty,
 }) => {
-  const [itemCout, setItemCout] = useState(1)
+  const [itemCout, setItemCout] = useState(itemQty)
 
   const handleSubstract = () => {
     if (itemCout == 1) return
