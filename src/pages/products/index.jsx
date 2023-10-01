@@ -14,7 +14,7 @@ const ProductsPage = () => {
   return (
     <div className="container mx-auto p-6 flex">
       <div className="w-1/4 pr-4">
-        {/* <FilterComponent/> */}
+        <FilterComponent />
         {/* Apply padding to the FilterComponent */}
       </div>
       <div>

@@ -26,6 +26,10 @@
   height: auto;
 }
 
+.label-title {
+  text-transform: capitalize;
+}
+
 /* @layer base {
   input[type='number']::-webkit-outer-spin-button,
   input[type='number']::-webkit-inner-spin-button,

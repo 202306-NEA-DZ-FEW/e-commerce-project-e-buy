@@ -20,7 +20,7 @@ export default function Filter() {
   }
 
   return (
-    <div className="flex items-center relative ml-4 max-w-screen-sm">
+    <div className="flex items-center relative ml-4 max-w-screen-sm md:text-xs sm:text-xs">
       <input
         type="text"
         placeholder="Search..."
@@ -41,9 +41,7 @@ export default function Filter() {
                   <h2 className="text-sm font-semibold"></h2>
                   <ul>
                     {data.products.map((product) => (
-                      <li key={product.id} className="text-sm">
-                        {/* {product.title} */}
-                      </li>
+                      <li key={product.id} className="text-sm"></li>
                     ))}
                   </ul>
                 </div>

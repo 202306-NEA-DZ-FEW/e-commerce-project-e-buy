@@ -32,10 +32,7 @@ const teamMembers = [
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 text-white py-8">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between">
-        <div className="text-center md:text-left mb-4 md:mb-0">
-          <h1 className="text-3xl font-bold">E-Buy</h1>
-        </div>
+      <div className="container mx-auto px-4 flex flex-col items-center md:flex-row justify-center">
         <div className="flex flex-wrap justify-center">
           {teamMembers.map((member, index) => (
             <div
@@ -65,6 +62,12 @@ const Footer = () => {
           ))}
         </div>
       </div>
+      <footer className="bg-OrangeWhite dark:bg-[#0b0b0b] py-2">
+        {/* Footer copyright content */}
+        <p className="text-white text-center mt-2">
+          &copy; {new Date().getFullYear()} E-Buy. All Rights Reserved.
+        </p>
+      </footer>
     </footer>
   )
 }
