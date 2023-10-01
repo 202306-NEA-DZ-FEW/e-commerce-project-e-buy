@@ -1,52 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import Cookies from "js-cookie"
 
-/*** Using dummy items object for now to showcase
- */
-
-const items = [
-  {
-    id: 1,
-    title: "iPhone 9",
-    description: "An apple mobile which is nothing like apple",
-    price: 20,
-    discountPercentage: 12.96,
-    rating: 4.69,
-    stock: 94,
-    brand: "Apple",
-    category: "smartphones",
-    thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-    images: [
-      "https://i.dummyjson.com/data/products/1/1.jpg",
-      "https://i.dummyjson.com/data/products/1/2.jpg",
-      "https://i.dummyjson.com/data/products/1/3.jpg",
-      "https://i.dummyjson.com/data/products/1/4.jpg",
-      "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-    ],
-    qty: 1,
-  },
-  {
-    id: 2,
-    title: "iPhone X",
-    description:
-      "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-    price: 899,
-    discountPercentage: 17.94,
-    rating: 4.44,
-    stock: 34,
-    brand: "Apple",
-    category: "smartphones",
-    thumbnail: "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
-    images: [
-      "https://i.dummyjson.com/data/products/2/1.jpg",
-      "https://i.dummyjson.com/data/products/2/2.jpg",
-      "https://i.dummyjson.com/data/products/2/3.jpg",
-      "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
-    ],
-    qty: 1,
-  },
-]
-
 const addDecimals = (number) => {
   return (Math.round(number * 100) / 100).toFixed(2)
 }
@@ -54,7 +8,7 @@ const initialState = Cookies.get("cart")
   ? { ...JSON.parse(Cookies.get("cart")), loading: true }
   : {
       loading: true,
-      cartItems: items,
+      cartItems: [],
       shippingAddress: {},
       paymentMethod: "",
     }

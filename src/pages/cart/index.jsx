@@ -31,7 +31,7 @@ const Index = () => {
     dispatch(removeFromCart(id))
   }
   return (
-    <div className="h-screen w-full container mx-auto mb-10">
+    <div className="h-full w-full container mx-auto mb-10">
       <h1 className="my-7 text-center text-2xl ">Cart Items</h1>
       {cartItems.length > 0 && isClient ? (
         <div className="mx-auto max-w-full justify-center px-6 md:flex md:space-x-6 xl:px-0">
