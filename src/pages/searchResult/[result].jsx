@@ -19,7 +19,17 @@ const SearchResult = () => {
   const debounceTimeout = useRef(null)
 
   useEffect(() => {
-    if (currentURL) {
+    if (currentURL == "all") {
+      fetch(`https://dummyjson.com/products`)
+        .then((response) => response.json())
+        .then((data) => {
+          setProducts(data.products)
+          setFilteredProducts(data.products)
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error)
+        })
+    } else if (currentURL) {
       fetch(`https://dummyjson.com/products/search?q=${currentURL}`)
         .then((response) => response.json())
         .then((data) => {
@@ -141,7 +151,7 @@ const SearchResult = () => {
   }
 
   return (
-    <div className="flex mx-20">
+    <div className="flex mx-6">
       <FilterComponent
         minPrice={minPrice}
         maxPrice={maxPrice}

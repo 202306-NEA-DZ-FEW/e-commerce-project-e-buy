@@ -25,7 +25,7 @@ export default function Api({ apiRoute, children }) {
   }, [apiRoute])
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div></div>
   }
 
   if (error) {

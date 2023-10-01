@@ -25,6 +25,10 @@ module.exports = {
       },
       fontFamily: {
         causten: ["Causten", "sans-serif"],
+        core: ["Core Sans C", "sans"],
+        lucky: ["Luckiest Guy", "cursive"],
+        lato: ["Lato", "sans-serif"],
+        open: ["Open Sans", "sans-serif"],
       },
     },
   },

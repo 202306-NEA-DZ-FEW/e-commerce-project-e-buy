@@ -31,7 +31,7 @@ const Navbar = () => {
         <Link href="/">
           <span className="cursor-pointer hover:text-gray-400">Home</span>
         </Link>
-        <Link href="/products">
+        <Link href="/searchResult">
           <span className="cursor-pointer hover:text-gray-400">Shop</span>
         </Link>
         <Link href="/contact">
@@ -39,7 +39,7 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className=" lg:hidden md:hidden pt-2 mr-auto ml-12">
+      <div className=" lg:hidden md:hidden pt-1.5 mr-auto ml-6">
         <button onClick={handleToggleMenu}>
           {isMenuOpen ? (
             <svg

@@ -94,12 +94,6 @@ const ProductPage = ({ id }) => {
         return (
           <div className="max-w-screen-xl mx-auto p-4 flex flex-col md:flex-row">
             <div className="w-full md:w-1/2 pr-4 relative">
-              <button
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
-                onClick={prevImage}
-              >
-                &lt;
-              </button>
               <img
                 src={product.images[currentImageIndex]}
                 alt={`Product Image ${currentImageIndex}`}
@@ -107,12 +101,6 @@ const ProductPage = ({ id }) => {
                   isTransitioning ? "opacity-0" : "opacity-100"
                 } transition-opacity`}
               />
-              <button
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
-                onClick={nextImage}
-              >
-                &gt;
-              </button>
 
               <div className="flex mt-4">
                 {product.images.map((image, index) => (
@@ -137,7 +125,7 @@ const ProductPage = ({ id }) => {
 
             <div className="w-full md:w-1/2 mt-4 md:mt-0">
               <div className="flex flex-col justify-center h-full">
-                <h1 className="text-2xl font-bold mb-2">{title}</h1>
+                <h1 className="text-2xl font-bold font-mono mb-2">{title}</h1>
 
                 <div className="flex items-center mb-2">{renderStars()}</div>
 

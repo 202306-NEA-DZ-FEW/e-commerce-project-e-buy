@@ -5,7 +5,12 @@ import ProductCard from "../Cards/ProductCard"
 const ProductDisplay = ({ currentURL, sortedProducts }) => {
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl mb-4">Search Results for {currentURL}</h1>
+      <h1 className="text-2xl mb-4">
+        {" "}
+        {currentURL == "all"
+          ? "All Products"
+          : `Search Results for ${currentURL}`}
+      </h1>
       <div className="flex flex-wrap justify-start">
         {sortedProducts.length > 0 ? (
           sortedProducts.map((product) => (

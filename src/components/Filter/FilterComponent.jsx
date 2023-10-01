@@ -50,7 +50,7 @@ const FilterComponent = ({
   }
 
   return (
-    <div className="w-full md:w-1/2 lg:w-1/3 mx-auto mt-1 pt-6 pr-6">
+    <div className="w-full md:w-1/2 lg:w-1/3 mx-auto mt-1 pt-6 pr-6 pl-6">
       <div className={`border p-2 rounded bg-white ${activeSection ? "" : ""}`}>
         <div
           className={`flex justify-between items-center mb-2 ${
