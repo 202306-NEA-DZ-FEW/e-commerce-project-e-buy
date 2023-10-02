@@ -47,7 +47,7 @@ const Footer = () => {
                 href={member.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-EBuyGray hover:text-EBuyYellow text-xl transition duration-300"
+                className="text-EBuyGray hover:text-EBuyDeepOrange text-xl transition duration-300"
               >
                 <AiFillGithub />
               </a>
@@ -55,7 +55,7 @@ const Footer = () => {
                 href={member.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-EBuyGray hover:text-EBuyYellow text-xl transition duration-300"
+                className="text-EBuyGray hover:text-EBuyDeepOrange text-xl transition duration-300"
               >
                 <AiFillLinkedin />
               </a>
