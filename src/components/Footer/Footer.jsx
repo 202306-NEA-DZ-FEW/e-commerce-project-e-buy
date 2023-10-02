@@ -32,12 +32,12 @@ const teamMembers = [
 
 const Footer = () => {
   return (
-    <footer className="bg-EBuyYellow text-EBuyGray mt-2 p-8">
+    <footer className="bg-gray-200 text-EBuyGray mt-2 p-8">
       <div className="container mx-auto flex flex-wrap justify-center">
         {teamMembers.map((member, index) => (
           <div
             key={index}
-            className="bg-EBuyOrange rounded-lg p-2 m-2 md:w-1/4 lg:w-1/5 hover:shadow-md hover:scale-105 transition duration-300 text-center"
+            className="bg-EBuyOrange rounded-lg p-2 m-2 md:w-1/4 lg:w-1/6 hover:shadow-md hover:scale-105 transition duration-300 text-center"
           >
             <h4 className="font-semibold mb-2 truncate text-lg">
               {member.name}

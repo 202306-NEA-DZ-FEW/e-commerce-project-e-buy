@@ -5,7 +5,7 @@ import SwiperCore, { Navigation } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/swiper-bundle.css"
 import Banner from "@/components/Banner/BannerC"
-import CategoriesCarousel from "@/components/Cards/CategoriesCarousel"
+import CategoriesCarousel from "@/components/Carousel/CategoriesCarousel"
 import ProductDisplay from "@/components/Filter/ProductDisplay"
 import Image from "next/image"
 

@@ -33,15 +33,19 @@ const Navbar = () => {
         } lg:flex lg:justify-center lg:space-x-12 md:flex md:justify-center md:space-x-12 flex-grow lg:flex-grow md:flex-grow font-light text-gray-800 tracking-wider`}
       >
         <Link href="/">
-          <span className="cursor-pointer lg:pl-28 hover:text-gray-400">
+          <span className="cursor-pointer lg:pl-28 hover:text-EBuyDeepOrange">
             Home
           </span>
         </Link>
         <Link href="/searchResult/all">
-          <span className="cursor-pointer  hover:text-gray-400">Shop</span>
+          <span className="cursor-pointer  hover:text-EBuyDeepOrange">
+            Shop
+          </span>
         </Link>
         <Link href="/contact">
-          <span className="cursor-pointer hover:text-gray-400">Contact</span>
+          <span className="cursor-pointer hover:text-EBuyDeepOrange">
+            Contact
+          </span>
         </Link>
       </div>
 
