@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react"
-import ProductCard from "@/components/Cards/ProductCard"
 import PreviewCard from "@/components/Cards/PreviewCard"
 import SwiperCore, { Navigation } from "swiper"
-import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/swiper-bundle.css"
-import Banner from "@/components/Banner/BannerC"
-import CategoriesCarousel from "@/components/Carousel/CategoriesCarousel"
 import ProductDisplay from "@/components/Filter/ProductDisplay"
 import Image from "next/image"
 
