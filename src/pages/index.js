@@ -7,12 +7,14 @@ import "swiper/swiper-bundle.css"
 import Banner from "@/components/Banner/BannerC"
 import CategoriesCarousel from "@/components/Cards/CategoriesCarousel"
 import ProductDisplay from "@/components/Filter/ProductDisplay"
+import Image from "next/image"
 
 const images = [
-  { src: "bannerC.jpg", alt: "banner" },
+  { src: "E-BUY STORE.png", alt: "banner" },
+  { src: "skincare.png", alt: "skincare" },
+  { src: "perfumes.png", alt: "perfumes" },
   { src: "furniture.png", alt: "furniture" },
-  { src: "homedeco.png", alt: "homedeco" },
-  { src: "dress.png", alt: "dresses" },
+  { src: "smartphones.png", alt: "phones" },
   //  { src: "../../public/" , alt: ""}
 ]
 SwiperCore.use([Navigation])
@@ -48,15 +50,68 @@ export default function Home() {
 
   return (
     <>
-      <div className="container mx-auto p-2">
+      <div className="container mx-auto p-8">
         <PreviewCard images={images} />
 
-        {/* <CategoriesCarousel categories={categories} /> */}
-        <h1 className="text-4xl font-bold mb-4 text-EBuyOrange">New Arrival</h1>
-        <br></br>
+        <h1 className="text-4xl font-bold mb-6 font-causten tracking-wider border-b-8 border-EBuyYellow pl-4 pt-8 pb-4 text-EBuyDarkGray">
+          New Arrivals
+        </h1>
         <ProductDisplay
           currentURL="all"
-          sortedProducts={products.slice(0, 6)}
+          sortedProducts={products.slice(0, 4)}
+        />
+
+        <div className="w-full px-2 py-2">
+          <div className="max-w-screen-sm mx-auto mt-8 flex flex-col items-center bg-EBuyOrange p-2 rounded-lg">
+            <h1 className="text-white text-center font-causten font-extrabold text-xl md:text-2xl py-2">
+              Featured Brands
+            </h1>
+            <div className="flex flex-wrap justify-center">
+              <Image
+                src="thewarehouse.svg"
+                height={80}
+                width={80}
+                className="mx-2 mb-2"
+                alt="The Warehouse logo"
+              />
+              <Image
+                src="apple.svg"
+                height={50}
+                width={50}
+                className="mx-2 mb-4"
+                alt="Apple logo"
+              />
+              <Image
+                src="oppo.svg"
+                height={80}
+                width={80}
+                className="mx-2 mb-2"
+                alt="Oppo logo"
+              />
+              <Image
+                src="samsung.svg"
+                height={80}
+                width={80}
+                className="mx-2 mb-2"
+                alt="Samsung logo"
+              />
+              <Image
+                src="loreal.svg"
+                height={80}
+                width={80}
+                className="mx-2 mb-2"
+                alt="Loreal logo"
+              />
+            </div>
+          </div>
+        </div>
+
+        <h1 className="text-4xl font-bold mb-6 font-causten tracking-wider border-b-8 border-EBuyYellow pl-4 pt-8 pb-4 text-EBuyDarkGray">
+          Top Beauty Products
+        </h1>
+        <ProductDisplay
+          currentURL="all"
+          sortedProducts={products.slice(14, 18)}
         />
       </div>
     </>

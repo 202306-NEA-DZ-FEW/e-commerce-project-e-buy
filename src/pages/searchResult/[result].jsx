@@ -19,27 +19,39 @@ const SearchResult = () => {
   const debounceTimeout = useRef(null)
 
   useEffect(() => {
-    if (currentURL == "all") {
-      fetch(`https://dummyjson.com/products`)
-        .then((response) => response.json())
-        .then((data) => {
-          setProducts(data.products)
-          setFilteredProducts(data.products)
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error)
-        })
-    } else if (currentURL) {
-      fetch(`https://dummyjson.com/products/search?q=${currentURL}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setProducts(data.products)
-          setFilteredProducts(data.products)
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error)
-        })
+    const fetchProducts = async () => {
+      try {
+        const allProducts = []
+        let totalProductsFetched = 0
+        const limit = 30
+
+        while (totalProductsFetched < 100) {
+          const response = await fetch(
+            currentURL === "all"
+              ? `https://dummyjson.com/products?skip=${totalProductsFetched}&limit=${limit}`
+              : `https://dummyjson.com/products/search?q=${currentURL}&skip=${totalProductsFetched}&limit=${limit}`,
+          )
+
+          const data = await response.json()
+          console.log("API response:", data)
+
+          if (data.products.length === 0) {
+            break
+          }
+
+          allProducts.push(...data.products)
+          totalProductsFetched += data.products.length
+          console.log("All products:", allProducts)
+        }
+
+        setProducts(allProducts)
+        setFilteredProducts(allProducts)
+      } catch (error) {
+        console.error("Error fetching data:", error)
+      }
     }
+
+    fetchProducts()
   }, [currentURL])
 
   const debounce = (func, delay) => {
@@ -151,26 +163,27 @@ const SearchResult = () => {
   }
 
   return (
-    <div className="flex mx-6">
-      <FilterComponent
-        minPrice={minPrice}
-        maxPrice={maxPrice}
-        sortByPriceAsc={sortByPriceAsc}
-        sortByPriceDesc={sortByPriceDesc}
-        sortByRating={sortByRating}
-        selectedCategories={selectedCategories}
-        handleMinPriceChange={handleMinPriceChange}
-        handleMaxPriceChange={handleMaxPriceChange}
-        handleSortByPriceAscChange={handleSortByPriceAscChange}
-        handleSortByPriceDescChange={handleSortByPriceDescChange}
-        handleSortByRatingChange={handleSortByRatingChange}
-        handleCategoryChange={handleCategoryChange}
-        filterCategories={filterCategories}
-      />
-      <div>
-        <h1 className="text-2xl mb-4 pt-4 font-semibold text-EBuyGray">
-          {" "}
-          {currentURL == "all"
+    <div className="flex flex-col lg:flex-row max-w-7xl">
+      <div className="lg:w-1/4">
+        <FilterComponent
+          minPrice={minPrice}
+          maxPrice={maxPrice}
+          sortByPriceAsc={sortByPriceAsc}
+          sortByPriceDesc={sortByPriceDesc}
+          sortByRating={sortByRating}
+          selectedCategories={selectedCategories}
+          handleMinPriceChange={handleMinPriceChange}
+          handleMaxPriceChange={handleMaxPriceChange}
+          handleSortByPriceAscChange={handleSortByPriceAscChange}
+          handleSortByPriceDescChange={handleSortByPriceDescChange}
+          handleSortByRatingChange={handleSortByRatingChange}
+          handleCategoryChange={handleCategoryChange}
+          filterCategories={filterCategories}
+        />
+      </div>
+      <div className="lg:w-3/4">
+        <h1 className="text-2xl p-4 font-semibold text-EBuyGray">
+          {currentURL === "all"
             ? "All Products"
             : `Search Results for ${currentURL}`}
         </h1>

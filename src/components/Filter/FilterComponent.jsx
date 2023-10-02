@@ -50,12 +50,12 @@ const FilterComponent = ({
   }
 
   return (
-    <div className="w-full md:w-1/2 lg:w-1/3 mx-auto mt-1 pt-6 pr-6 pl-6">
-      <div className={`border p-2 rounded bg-white ${activeSection ? "" : ""}`}>
+    <div className="w-full mx-auto mt-1 pt-6 pr-6 pl-6">
+      <div
+        className={`border  p-2 rounded bg-gray-50 ${activeSection ? "" : ""}`}
+      >
         <div
-          className={`flex justify-between items-center mb-2 ${
-            activeSection ? "border-b-4" : "border-b-4"
-          }`}
+          className={`flex justify-between items-center mb-2 border-b-2 border-EBuyYellow`}
         >
           <span className="text-xl pb-2">Filter</span>
         </div>

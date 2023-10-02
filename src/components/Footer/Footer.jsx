@@ -2,6 +2,7 @@ import React from "react"
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai"
 
 const teamMembers = [
+  // Your team members data
   {
     name: "Fella Kettani",
     github: "https://github.com/fketta",
@@ -31,20 +32,22 @@ const teamMembers = [
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-700 text-white py-8 flex flex-wrap justify-center items-center">
-      <div className="container mx-auto px-4 flex flex-col items-center md:flex-row justify-center">
+    <footer className="bg-EBuyYellow text-EBuyGray mt-2 p-8">
+      <div className="container mx-auto flex flex-wrap justify-center">
         {teamMembers.map((member, index) => (
           <div
             key={index}
-            className="bg-gray-800 rounded-lg p-4 m-2 w-48 hover:shadow-md hover:scale-105 transition duration-300 text-center"
+            className="bg-EBuyOrange rounded-lg p-2 m-2 md:w-1/4 lg:w-1/5 hover:shadow-md hover:scale-105 transition duration-300 text-center"
           >
-            <h4 className="font-semibold mb-2 truncate">{member.name}</h4>
+            <h4 className="font-semibold mb-2 truncate text-lg">
+              {member.name}
+            </h4>
             <div className="flex items-center justify-center space-x-2 mt-2">
               <a
                 href={member.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-orange-500 text-xl transition duration-300"
+                className="text-EBuyGray hover:text-EBuyYellow text-xl transition duration-300"
               >
                 <AiFillGithub />
               </a>
@@ -52,7 +55,7 @@ const Footer = () => {
                 href={member.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-orange-500 text-xl transition duration-300"
+                className="text-EBuyGray hover:text-EBuyYellow text-xl transition duration-300"
               >
                 <AiFillLinkedin />
               </a>
@@ -60,12 +63,9 @@ const Footer = () => {
           </div>
         ))}
       </div>
-      <footer className=" py-2">
-        {/* Footer copyright content */}
-        <p className="text-white text-center mt-2">
-          &copy; {new Date().getFullYear()} E-Buy. All Rights Reserved.
-        </p>
-      </footer>
+      <p className="text-EBuyGray text-center mt-2">
+        &copy; {new Date().getFullYear()} E-Buy. All Rights Reserved.
+      </p>
     </footer>
   )
 }

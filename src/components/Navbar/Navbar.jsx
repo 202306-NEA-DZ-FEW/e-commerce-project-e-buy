@@ -1,15 +1,23 @@
 import React, { useState } from "react"
-import logo from "../../images/logo.svg"
+import logo from "../../../public/logo.svg"
 import Image from "next/image"
 import Filter from "../Filter/Filter"
+import dynamic from "next/dynamic"
 import Link from "next/link"
+
+//import CartIcon from "../ShoppingIcon/CartIcon"
+
+// using dynamic import to disable ssr
+const CartIcon = dynamic(() => import("@/components/ShoppingIcon/CartIcon"), {
+  ssr: false,
+})
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
   return (
-    <nav className="flex items-center p-4 bg-white text-gray-800 shadow-md relative">
+    <nav className="flex items-center  p-4 bg-gray-50 text-gray-800 shadow-md relative">
       {/* Logo on the left */}
       <div className="flex items-center">
         <Link href="/">
@@ -25,10 +33,12 @@ const Navbar = () => {
         } lg:flex lg:justify-center lg:space-x-12 md:flex md:justify-center md:space-x-12 flex-grow lg:flex-grow md:flex-grow font-light text-gray-800 tracking-wider`}
       >
         <Link href="/">
-          <span className="cursor-pointer hover:text-gray-400">Home</span>
+          <span className="cursor-pointer lg:pl-28 hover:text-gray-400">
+            Home
+          </span>
         </Link>
         <Link href="/searchResult/all">
-          <span className="cursor-pointer hover:text-gray-400">Shop</span>
+          <span className="cursor-pointer  hover:text-gray-400">Shop</span>
         </Link>
         <Link href="/contact">
           <span className="cursor-pointer hover:text-gray-400">Contact</span>
@@ -78,6 +88,7 @@ const Navbar = () => {
       >
         <Filter />
       </div>
+      <CartIcon />
     </nav>
   )
 }
