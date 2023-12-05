@@ -14,7 +14,7 @@ The code in this repository constitutes the backbone of the E-Buy website, enabl
 
 ## Vision
 The vision of this project is to establish a robust e-commerce platform that simplifies online shopping for users. We aim to create an intuitive interface, optimize performance, and enhance the overall user experience.
-![image](https://github.com/202306-NEA-DZ-FEW/e-commerce-project-e-buy/assets/137810513/715ce8c8-17e1-4838-a9b4-9061f847d3a3)
+![image](https://github.com/202306-NEA-DZ-FEW/e-commerce-project-e-buy/assets/137810513/d2e89488-278f-4df8-ac51-22987434d369)
 ![image](https://github.com/202306-NEA-DZ-FEW/e-commerce-project-e-buy/assets/137810513/ca31faa2-3291-49f4-8997-b106af796364)
 ![image](https://github.com/202306-NEA-DZ-FEW/e-commerce-project-e-buy/assets/137810513/bb4cedf5-279d-48b5-b40c-1b68b323c04c)
 ![image](https://github.com/202306-NEA-DZ-FEW/e-commerce-project-e-buy/assets/137810513/5d352f49-54f3-4138-8637-c798a90c4c68)
