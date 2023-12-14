@@ -40,7 +40,7 @@ export default function Index() {
         </p>
       </div>
       <div className="flex flex-col lg:flex-row mx-5 lg:mx-16 p-4 bg-gray-100 rounded-lg">
-        <div className="bg-EBuyYellow rounded-lg shadow-md p-6 mb-6 lg:mr-6 lg:w-1/3">
+        <div className="bg-EBuyYellow rounded-lg shadow-md p-6 lg:mr-6 lg:w-1/3">
           <h2 className="text-3xl font-semibold mb-4 text-EBuyDarkGray">
             Contact Information
           </h2>
@@ -60,78 +60,75 @@ export default function Index() {
         </div>
 
         <div className="lg:w-2/3 flex flex-col">
-          <form className="flex flex-wrap lg:gap-8" onSubmit={handleFormSubmit}>
-            <div className="mb-4 lg:col-span-1">
-              <label
-                htmlFor="firstName"
-                className="text-lg font-semibold text-EBuyDarkGray"
-              >
-                First Name
-                <input
-                  placeholder="First Name"
-                  type="text"
-                  id="firstName"
-                  className="w-full border-b border-gray-400 py-2 px-3 text-gray-700 focus:outline-none focus:border-black"
-                />
-              </label>
-            </div>
-            <div className="mb-4 lg:col-span-1">
-              <label
-                htmlFor="lastName"
-                className="text-lg font-semibold text-EBuyDarkGray"
-              >
-                Last Name
-                <input
-                  placeholder="Last Name"
-                  type="text"
-                  id="lastName"
-                  className="w-full border-b border-gray-400 py-2 px-3 text-gray-700 focus:outline-none focus:border-black"
-                />
-              </label>
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="email"
-                className="text-lg font-semibold text-EBuyDarkGray"
-              >
-                Email
-                <input
-                  placeholder="Email"
-                  type="email"
-                  id="email"
-                  className="w-full border-b border-gray-400 py-2 px-3 text-gray-700 focus:outline-none focus:border-black"
-                />
-              </label>
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="phoneNumber"
-                className="text-lg font-semibold text-EBuyDarkGray"
-              >
-                Phone Number
-                <input
-                  placeholder="Phone Number"
-                  type="tel"
-                  id="phoneNumber"
-                  className="w-full border-b border-gray-400 py-2 px-3 text-gray-700 focus:outline-none focus:border-black"
-                />
-              </label>
-            </div>
-            <div className="mb-4 col-span-2">
-              <label
-                htmlFor="message"
-                className="text-lg font-semibold text-EBuyDarkGray"
-              >
-                Message
-                <textarea
-                  placeholder="Write your message here.."
-                  id="message"
-                  className="w-full border-b border-gray-400 py-2 px-3 text-gray-700 focus:outline-none focus:border-black h-12 resize-none"
-                />
-              </label>
-            </div>
+          <form
+            className="flex flex-wrap gap-6 justify-between"
+            onSubmit={handleFormSubmit}
+          >
+            <label
+              htmlFor="firstName"
+              className="text-lg font-semibold w-full lg:w-[47%] text-EBuyDarkGray mb-4 flex flex-col pt-5 lg:pt-0"
+            >
+              First Name
+              <input
+                placeholder="First Name"
+                type="text"
+                id="firstName"
+                className="w-full border-b rounded-md border-gray-400 py-2 px-3 text-gray-700 focus:outline-none focus:border-black resize-none"
+              />
+            </label>
+
+            <label
+              htmlFor="lastName"
+              className="text-lg font-semibold w-full lg:w-[47%] text-EBuyDarkGray mb-4 flex flex-col"
+            >
+              Last Name
+              <input
+                placeholder="Last Name"
+                type="text"
+                id="lastName"
+                className="w-full border-b rounded-md border-gray-400 py-2 px-3 text-gray-700 focus:outline-none focus:border-black resize-none"
+              />
+            </label>
+
+            <label
+              htmlFor="email"
+              className="text-lg font-semibold w-full lg:w-[47%] text-EBuyDarkGray mb-4 flex flex-col"
+            >
+              Email
+              <input
+                placeholder="Email"
+                type="email"
+                id="email"
+                className="w-full border-b rounded-md border-gray-400 py-2 px-3 text-gray-700 focus:outline-none focus:border-black resize-none"
+              />
+            </label>
+
+            <label
+              htmlFor="phoneNumber"
+              className="text-lg font-semibold w-full lg:w-[47%] text-EBuyDarkGray mb-4 flex flex-col"
+            >
+              Phone Number
+              <input
+                placeholder="Phone Number"
+                type="tel"
+                id="phoneNumber"
+                className="w-full border-b rounded-md border-gray-400 py-2 px-3 text-gray-700 focus:outline-none focus:border-black resize-none"
+              />
+            </label>
+
+            <label
+              htmlFor="message"
+              className="text-lg font-semibold w-full text-EBuyDarkGray mb-4 flex flex-col w-full"
+            >
+              Message
+              <textarea
+                placeholder="Write your message here.."
+                id="message"
+                className="w-full border-b rounded-md border-gray-400 py-2 px-3 text-gray-700 focus:outline-none focus:border-black resize-none h-20 resize-none"
+              />
+            </label>
           </form>
-          <div className="flex justify-end col-span-2">
+          <div className="flex justify-end">
             <button
               type="submit"
               className="bg-EBuyDarkGray w-1/4 h-12 text-white font-semibold rounded-lg hover:bg-EBuyGray focus:outline-none focus:bg-black"
