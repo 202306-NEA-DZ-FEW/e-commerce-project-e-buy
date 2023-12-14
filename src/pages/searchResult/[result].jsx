@@ -163,8 +163,8 @@ const SearchResult = () => {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row max-w-7xl">
-      <div className="lg:w-1/4">
+    <div className="flex flex-col md:flex-row">
+      <div className="md:w-1/4 min-w-[250px]">
         <FilterComponent
           minPrice={minPrice}
           maxPrice={maxPrice}
@@ -181,7 +181,7 @@ const SearchResult = () => {
           filterCategories={filterCategories}
         />
       </div>
-      <div className="lg:w-3/4">
+      <div>
         <h1 className="text-2xl p-4 font-semibold text-EBuyGray">
           {currentURL === "all"
             ? "All Products"
