@@ -1,12 +1,8 @@
 import Navbar from "@/components/Navbar/Navbar"
 import Footer from "@/components/Footer/Footer"
-import PreviewCard from "@/components/Cards/PreviewCard"
 import "@/styles/globals.css"
-import Link from "next/link"
-import { useRouter } from "next/router"
 
 import { StoreProvider } from "@/redux/StoreProvider"
-import { useEffect } from "react"
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -15,7 +11,7 @@ const App = ({ Component, pageProps }) => {
         <Navbar />
 
         {/* Main content */}
-        <div>
+        <div className="min-h-screen">
           <Component {...pageProps} />
         </div>
 

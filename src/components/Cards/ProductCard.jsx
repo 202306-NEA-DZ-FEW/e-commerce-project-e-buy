@@ -2,7 +2,7 @@ import { addToCart } from "@/redux/slices/CartSlice"
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useRouter } from "next/router"
-import { FaStar, FaShoppingCart } from "react-icons/fa"
+import { FaShoppingCart } from "react-icons/fa"
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch()

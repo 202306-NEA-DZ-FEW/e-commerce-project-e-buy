@@ -14,7 +14,7 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/katiaghezali/",
   },
   {
-    name: "Sid-Ali Habchi",
+    name: "Sid Ali Habchi",
     github: "https://github.com/HabchiSidAli",
     linkedin: "https://www.linkedin.com/in/sid-ali-habchi-10216125a/",
   },
