@@ -6,11 +6,11 @@ import ProductDisplay from "@/components/Filter/ProductDisplay"
 import Image from "next/image"
 
 const images = [
-  { src: "E-BUY STORE.png", alt: "banner" },
-  { src: "skincare.png", alt: "skincare" },
-  { src: "perfumes.png", alt: "perfumes" },
-  { src: "furniture.png", alt: "furniture" },
-  { src: "smartphones.png", alt: "phones" },
+  { src: "E-BUY STORE.jpg", alt: "banner" },
+  { src: "skincare.jpg", alt: "skincare" },
+  { src: "perfumes.jpg", alt: "perfumes" },
+  { src: "furniture.jpg", alt: "furniture" },
+  { src: "smartphones.jpg", alt: "phones" },
   //  { src: "../../public/" , alt: ""}
 ]
 SwiperCore.use([Navigation])
